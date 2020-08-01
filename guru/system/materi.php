@@ -1,22 +1,5 @@
 <?php
-if($_GET['aksi']=='cari_materi_kelas'){
-    $id_kelas=$_POST['id_kelas'];
-    header('location:?page=materi&materi=data_kelas&id_kelas='.$id_kelas);
-}elseif($_GET['aksi']=='select_ampu'){
-    $id=$_POST['id'];
-    $ampu=mysqli_query($koneksi,"select * from ampu left join mapel on ampu.id_mapel=mapel.id_mapel left join guru on guru.id_guru=ampu.id_guru where ampu.id_kelas='$id'");
-    // $data=array();
-    while($d = mysqli_fetch_array($ampu)){
-        // $data[]=array(
-        //     'id_ampu'=>$d['id_ampu'],
-        //     'id_mapel'=>$d['id_mapel'],
-        //     'nama_mapel'=>$d['nm_mapel'],
-        // );
-        echo "<option value=".$d['id_ampu'].">".$d['nm_mapel']." ( ".$d['nm_guru']." )</option>";
-    }
-    // echo json_encode($data); 
-    
-}elseif($_GET['aksi']=='upload_materi'){
+if($_GET['aksi']=='upload_materi'){
     // deklarasi variabel
     $id_ampu=$_POST['pengampu'];
     $judul=$_POST['judul'];
@@ -36,7 +19,7 @@ if($_GET['aksi']=='cari_materi_kelas'){
     if(!in_array($ext,$ekstensi) ) {
         $_SESSION['pesan']='ge';
         // header('location:?page=materi&materi=tambah_materi');
-        header('location:?page=materi&materi=tambah_materi');
+        header('location:?page=mata_pelajaran&mata_pelajaran=tambah&id_ampu='.$id_ampu);
     }else{
         if($ukuran < 1044070){		
             $xx = $rand.'_'.$filename;
@@ -45,11 +28,11 @@ if($_GET['aksi']=='cari_materi_kelas'){
             mysqli_query($koneksi, "INSERT INTO materi VALUES('','$id_ampu','$judul','$ket','$jenis','$link','$xx','$time','$expired','$sts')");
             $_SESSION['pesan']='bi';
             // header('location:?page=materi&materi=tambah_materi');
-            header('location:?page=materi&materi=tambah_materi');
+            header('location:?page=mata_pelajaran&mata_pelajaran=tambah&id_ampu='.$id_ampu);
         }else{
             $_SESSION['pesan']='gu';
             // header('location:?page=materi&materi=tambah_materi');
-            header('location:?page=materi&materi=tambah_materi');
+            header('location:?page=mata_pelajaran&mata_pelajaran=tambah&id_ampu='.$id_ampu);
         }
 }
 }elseif($_GET['aksi']=='hapus_materi'){
@@ -85,7 +68,7 @@ if($_GET['aksi']=='cari_materi_kelas'){
         if(!in_array($ext,$ekstensi) ) {
             $_SESSION['pesan']='ge';
             // header('location:?page=materi&materi=tambah_materi');
-            header('location:?page=materi&materi=detail_materi&id_materi='.$id_materi);
+            header('location:?page=mata_pelajaran&mata_pelajaran=detail_materi&id_materi='.$id_materi);
         }else{
             if($ukuran < 1044070){		
                 // menghapus file sebelumnya
@@ -96,11 +79,11 @@ if($_GET['aksi']=='cari_materi_kelas'){
                 mysqli_query($koneksi, "update materi set judul='$judul' , ket='$ket' , jenis='$jenis' ,link='$link',file='$xx', expired='$expired' , sts='$sts' where id_materi='$id_materi'  ");
                 $_SESSION['pesan']='bi';
                 // header('location:?page=materi&materi=tambah_materi');
-                header('location:?page=materi&materi=detail_materi&id_materi='.$id_materi);
+                header('location:?page=mata_pelajaran&mata_pelajaran=detail_materi&id_materi='.$id_materi);
             }else{
                 $_SESSION['pesan']='gu';
                 // header('location:?page=materi&materi=tambah_materi');
-                header('location:?page=materi&materi=detail_materi&id_materi='.$id_materi);
+                header('location:?page=mata_pelajaran&mata_pelajaran=detail_materi&id_materi='.$id_materi);
             }
     }
     }else{
@@ -108,7 +91,7 @@ if($_GET['aksi']=='cari_materi_kelas'){
         mysqli_query($koneksi, "update materi set judul='$judul' , ket='$ket' , jenis='$jenis' ,link='$link', expired='$expired' , sts='$sts' where id_materi='$id_materi'  ");
         $_SESSION['pesan']='bi';
         // header('location:?page=materi&materi=tambah_materi');
-        header('location:?page=materi&materi=detail_materi&id_materi='.$id_materi);
+        header('location:?page=mata_pelajaran&mata_pelajaran=detail_materi&id_materi='.$id_materi);
     }
 
     
@@ -123,7 +106,7 @@ if($_GET['aksi']=='cari_materi_kelas'){
     // tipe 1 adalah tipe untuk siswa sedangkan guru adalah tipe 0
     mysqli_query($koneksi,"insert into post values ('','$id_ampu','$id_materi','$time','$diskusi','$tipe')");
     $_SESSION['pesan']='td';
-    header('location:?page=materi&materi=detail_materi&id_materi='.$id_materi);
+    header('location:?page=mata_pelajaran&mata_pelajaran=detail_materi&id_materi='.$id_materi);
 }elseif($_GET['aksi']=='hapus_diskusi'){
     echo $id=$_GET['id'];
     $post=mysqli_query($koneksi,"select * from post where id_post='$id'");
@@ -161,7 +144,7 @@ if($_GET['aksi']=='cari_materi_kelas'){
     $id_materi=$_POST['id_materi'];
     mysqli_query($koneksi,"update post set isi='$diskusi' where id_post='$id_diskusi'");
     $_SESSION['pesan']='ed';
-    header('location:?page=materi&materi=detail_materi&id_materi='.$id_materi);
+    header('location:?page=mata_pelajaran&mata_pelajaran=detail_materi&id_materi='.$id_materi);
 
 }elseif($_GET['aksi']=='tambah_komentar'){
     $komentar=$_POST['komentar'];
@@ -173,10 +156,10 @@ if($_GET['aksi']=='cari_materi_kelas'){
     // tipe 1 adalah tipe untuk siswa sedangkan guru adalah tipe 0
     mysqli_query($koneksi,"insert into reply values ('','$id_post','$id_ampu','$time','$komentar','$tipe')");
     $_SESSION['pesan']='tk';
-    header('location:?page=materi&materi=detail_materi&id_materi='.$id_materi);
+    header('location:?page=mata_pelajaran&mata_pelajaran=detail_materi&id_materi='.$id_materi);
 }elseif($_GET['aksi']=='hapus_komentar'){
-    echo $id=$_GET['id'];
-        mysqli_query($koneksi,"delete from reply where id_reply='$id'");
+    $id=$_GET['id'];
+    mysqli_query($koneksi,"delete from reply where id_reply='$id'");
     $_SESSION['pesan']='hk';
 
 }elseif($_GET['aksi']=='select_komentar'){
@@ -207,7 +190,7 @@ if($_GET['aksi']=='cari_materi_kelas'){
     $id_materi=$_POST['id_materi'];
     mysqli_query($koneksi,"update reply set isi='$komentar' where id_reply='$id_komentar'");
     $_SESSION['pesan']='ek';
-    header('location:?page=materi&materi=detail_materi&id_materi='.$id_materi);
+    header('location:?page=mata_pelajaran&mata_pelajaran=detail_materi&id_materi='.$id_materi);
 
 }
 

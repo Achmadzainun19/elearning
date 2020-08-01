@@ -215,8 +215,6 @@
 <!-- Morris.js charts -->
 <script src="../assets/bower_components/raphael/raphael.min.js"></script>
 <script src="../assets/bower_components/morris.js/morris.min.js"></script>
-<!-- Select2 -->
-<script src="../assets/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- Sparkline -->
 <script src="../assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
@@ -227,22 +225,17 @@
 <!-- daterangepicker -->
 <script src="../assets/bower_components/moment/min/moment.min.js"></script>
 <script src="../assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- sweet alert -->
+<script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
+<script src="../assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- datepicker -->
 <script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="../assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<!-- DataTables -->
-<script src="../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- Slimscroll -->
 <script src="../assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="../assets/bower_components/fastclick/lib/fastclick.js"></script>
-<!-- sweet alert -->
-<script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
-<script src="../assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- bootstrap datepicker -->
-<script src="../assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -251,5 +244,3 @@
 <script src="../assets/dist/js/demo.js"></script>
 </body>
 </html>
-
-

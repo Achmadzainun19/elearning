@@ -222,6 +222,8 @@
 <script src="../assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 <!-- jQuery Knob Chart -->
 <script src="../assets/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+<!-- sweet alert -->
+<script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
 <!-- daterangepicker -->
 <script src="../assets/bower_components/moment/min/moment.min.js"></script>
 <script src="../assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>

@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 $(document).ready(function(){
     $('#kelas').on('change', function(){
         var id = $(this).val();
@@ -18,11 +18,12 @@ $(document).ready(function(){
         }
     });
 });
-</script>
+</script> -->
 
 <script type="text/javascript">
     $(".hapus-materi").click(function(){
         var id = $(this).attr('id');
+        var ampu = $(this).attr('ampu');
 
        swal({
         title: "apakah anda yakin ?",
@@ -38,7 +39,7 @@ $(document).ready(function(){
       function(isConfirm) {
         if (isConfirm) {
           $.ajax({
-             url: "http://localhost/elearning/admin/?system=materi&aksi=hapus_materi",
+             url: "http://localhost/elearning/guru/?system=materi&aksi=hapus_materi",
              data:{id : id},
              type: 'GET',
              error: function() {
@@ -46,7 +47,7 @@ $(document).ready(function(){
              },
              success: function(data) {
                   swal("Berhasil!", "data berhasil dihapus.", "success");
-                  location.href="http://localhost/elearning/admin/?page=materi&materi=data_sekarang";
+                  location.href="http://localhost/elearning/guru/?page=mata_pelajaran&mata_pelajaran=detail&id_ampu="+ampu;
                   // tampil_data_kelas();
              }
           });
@@ -57,6 +58,30 @@ $(document).ready(function(){
      
     });
     
+</script>
+
+<script type="text/javascript">
+  // load data for edit
+    $(document).ready(function() {
+        $('.edit-diskusi').click(function(){
+            var id = $(this).attr('id');
+            $.ajax({
+                url : "http://localhost/elearning/guru/?system=materi&aksi=select_diskusi",
+                data:{id : id},
+                method:'GET',
+                dataType:'json',
+                success:function(response) {
+                $.each(response, function(i, item){
+                    $('#id_diskusi_edit').val(response[i].id_post);
+                    $('#desk_diskusi').val(response[i].isi); 
+                    $('#nm_pendiskusi').val(response[i].nama_user); 
+                    $('#tipe_pendiskusi').val(response[i].tipe); 
+                    $('#edit_diskusi').modal({backdrop: 'static', keyboard: true, show: true});
+                });
+            }
+            });
+        });
+    });
 </script>
 
 <script type="text/javascript">
@@ -77,7 +102,7 @@ $(document).ready(function(){
       function(isConfirm) {
         if (isConfirm) {
           $.ajax({
-             url: "http://localhost/elearning/admin/?system=materi&aksi=hapus_diskusi",
+             url: "http://localhost/elearning/guru/?system=materi&aksi=hapus_diskusi",
              data:{id : id},
              type: 'GET',
              error: function() {
@@ -85,7 +110,7 @@ $(document).ready(function(){
              },
              success: function(data) {
                   swal("Berhasil!", "data berhasil dihapus.", "success");
-                  location.href="http://localhost/elearning/admin/?page=materi&materi=detail_materi&id_materi="+materi;
+                  location.href="http://localhost/elearning/guru/?page=mata_pelajaran&mata_pelajaran=detail_materi&id_materi="+materi;
                   // tampil_data_kelas();
              }
           });
@@ -116,7 +141,7 @@ $(document).ready(function(){
       function(isConfirm) {
         if (isConfirm) {
           $.ajax({
-             url: "http://localhost/elearning/admin/?system=materi&aksi=hapus_komentar",
+             url: "http://localhost/elearning/guru/?system=materi&aksi=hapus_komentar",
              data:{id : id},
              type: 'GET',
              error: function() {
@@ -124,7 +149,7 @@ $(document).ready(function(){
              },
              success: function(data) {
                   swal("Berhasil!", "data berhasil dihapus.", "success");
-                  location.href="http://localhost/elearning/admin/?page=materi&materi=detail_materi&id_materi="+materi;
+                  location.href="http://localhost/elearning/guru/?page=mata_pelajaran&mata_pelajaran=detail_materi&id_materi="+materi;
                   // tampil_data_kelas();
              }
           });
@@ -138,36 +163,12 @@ $(document).ready(function(){
 </script>
 
 <script type="text/javascript">
-  // load data for edit
-    $(document).ready(function() {
-        $('.edit-diskusi').click(function(){
-            var id = $(this).attr('id');
-            $.ajax({
-                url : "http://localhost/elearning/admin/?system=materi&aksi=select_diskusi",
-                data:{id : id},
-                method:'GET',
-                dataType:'json',
-                success:function(response) {
-                $.each(response, function(i, item){
-                    $('#id_diskusi_edit').val(response[i].id_post);
-                    $('#desk_diskusi').val(response[i].isi); 
-                    $('#nm_pendiskusi').val(response[i].nama_user); 
-                    $('#tipe_pendiskusi').val(response[i].tipe); 
-                    $('#edit_diskusi').modal({backdrop: 'static', keyboard: true, show: true});
-                });
-            }
-            });
-        });
-    });
-</script>
-
-<script type="text/javascript">
-  // load data for edit
+// load data for edit
     $(document).ready(function() {
         $('.edit-komentar').click(function(){
             var id = $(this).attr('id');
             $.ajax({
-                url : "http://localhost/elearning/admin/?system=materi&aksi=select_komentar",
+                url : "http://localhost/elearning/guru/?system=materi&aksi=select_komentar",
                 data:{id : id},
                 method:'GET',
                 dataType:'json',

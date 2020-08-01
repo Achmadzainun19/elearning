@@ -30,7 +30,7 @@
           </a>
         </li>
         <li>
-          <a href="?page=laporan_presensi&tanggal_cari=<?php echo date("Y-m-1")?>">
+          <a href="?page=laporan&laporan=presensi">
             <i class="fa fa-calendar"></i> <span>Laporan Presensi</span>
           </a>
         </li>

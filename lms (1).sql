@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2020 at 02:25 PM
+-- Generation Time: Aug 01, 2020 at 12:31 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.13
 
@@ -1178,6 +1178,7 @@ CREATE TABLE `materi` (
   `ket` text NOT NULL,
   `jenis` tinyint(1) NOT NULL,
   `link` varchar(255) NOT NULL,
+  `file` text NOT NULL,
   `time` int(10) NOT NULL,
   `expired` int(10) NOT NULL,
   `sts` tinyint(1) NOT NULL
@@ -1187,8 +1188,9 @@ CREATE TABLE `materi` (
 -- Dumping data for table `materi`
 --
 
-INSERT INTO `materi` (`id_materi`, `id_ampu`, `judul`, `ket`, `jenis`, `link`, `time`, `expired`, `sts`) VALUES
-(4, 35, 'percobaan', 'percobaan', 1, '', 1595492405, 1595492405, 1);
+INSERT INTO `materi` (`id_materi`, `id_ampu`, `judul`, `ket`, `jenis`, `link`, `file`, `time`, `expired`, `sts`) VALUES
+(19, 35, 'akidah dan akhlaq', 'berikut ini adalah materi tentang aqidah akhlaq ', 2, '', '1604963527_INTRODUCTION BRANDING bu lia.pdf', 1595929158, 1595929158, 1),
+(23, 35, 'percobaan', 'percobaan', 1, '', '853166817_UAS - BANNY FIRSHA BAHARI.pdf', 1596204234, 1596740880, 1);
 
 -- --------------------------------------------------------
 
@@ -1198,8 +1200,18 @@ INSERT INTO `materi` (`id_materi`, `id_ampu`, `judul`, `ket`, `jenis`, `link`, `
 
 CREATE TABLE `notif` (
   `id_siswa` smallint(5) UNSIGNED NOT NULL,
-  `id_materi` mediumint(6) UNSIGNED NOT NULL
+  `id_materi` mediumint(6) UNSIGNED NOT NULL,
+  `time` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notif`
+--
+
+INSERT INTO `notif` (`id_siswa`, `id_materi`, `time`) VALUES
+(497, 19, 1595929616),
+(497, 0, 1596240543),
+(498, 19, 1596240766);
 
 -- --------------------------------------------------------
 
@@ -1212,8 +1224,16 @@ CREATE TABLE `post` (
   `id_user` smallint(5) UNSIGNED NOT NULL,
   `id_materi` mediumint(6) UNSIGNED NOT NULL,
   `time` int(10) NOT NULL,
-  `isi` varchar(255) NOT NULL
+  `isi` varchar(255) NOT NULL,
+  `tipe` set('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`id_post`, `id_user`, `id_materi`, `time`, `isi`, `tipe`) VALUES
+(1, 497, 19, 1596240543, 'percobaan memulai diskusi', '1');
 
 -- --------------------------------------------------------
 
@@ -1226,8 +1246,18 @@ CREATE TABLE `reply` (
   `id_post` mediumint(9) UNSIGNED NOT NULL,
   `id_user` smallint(5) UNSIGNED NOT NULL,
   `time` int(10) NOT NULL,
-  `isi` varchar(255) NOT NULL
+  `isi` varchar(255) NOT NULL,
+  `tipe` set('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reply`
+--
+
+INSERT INTO `reply` (`id_reply`, `id_post`, `id_user`, `time`, `isi`, `tipe`) VALUES
+(2, 1, 35, 1596240587, 'dsfdfgfh', '0'),
+(3, 1, 498, 1596240774, 'percobaan ', '1'),
+(4, 1, 497, 1596241751, 'percobaan lagi\r\n', '1');
 
 -- --------------------------------------------------------
 
@@ -2703,19 +2733,19 @@ ALTER TABLE `mapel`
 -- AUTO_INCREMENT for table `materi`
 --
 ALTER TABLE `materi`
-  MODIFY `id_materi` mediumint(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_materi` mediumint(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id_post` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_post` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reply`
 --
 ALTER TABLE `reply`
-  MODIFY `id_reply` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_reply` mediumint(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `siswa`

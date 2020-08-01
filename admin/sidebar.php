@@ -49,15 +49,30 @@
             <i class="fa fa-calendar"></i> <span>Pengampu Mapel</span>
           </a>
         </li>
-        <li>
-          <a href="?page=materi">
-            <i class="fa fa-calendar"></i> <span>Upload Materi ( helper guru )</span>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-folder"></i> <span>Materi</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
+          <ul class="treeview-menu">
+            <li><a href="?page=materi&materi=tambah_materi"><i class="fa fa-circle-o"></i> Tambah Materi</a></li>
+            <li><a href="?page=materi&materi=data_sekarang"><i class="fa fa-circle-o"></i> Materi</a></li>
+            <!-- <li><a href="?page=materi&materi=data_kelas&id_kelas=201"><i class="fa fa-circle-o"></i> Materi per Kelas</a></li> -->
+          </ul>
         </li>
-        <li>
-          <a href="?page=data_materi">
-            <i class="fa fa-calendar"></i> <span>Materi </span>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-folder"></i> <span>Presensi</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
+          <ul class="treeview-menu">
+            <li><a href="?page=presensi&presensi=guru&id_guru=1"><i class="fa fa-circle-o"></i> Presensi Guru</a></li>
+            <li><a href="?page=presensi&presensi=siswa_awal&id_kelas=201"><i class="fa fa-circle-o"></i> Presensi Siswa</a></li>
+          </ul>
         </li>
         <li>
           <a href="?pag=login&aksi=logout">

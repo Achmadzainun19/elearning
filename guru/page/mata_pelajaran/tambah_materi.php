@@ -4,7 +4,7 @@
     <section class="content-header">
       <h1>
         Mata Pelajaran
-        <small>Matematika Dasar Kelas 10</small>
+        <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> mata pelajaran</a></li>
@@ -53,6 +53,39 @@
                 } 
                 ?>
             </div>
+            <?php
+            $no=1;
+                $data=mysqli_query($koneksi,"select * from ampu left join guru on guru.id_guru=ampu.id_guru left join mapel on ampu.id_mapel=mapel.id_mapel left join kelas on kelas.id_kelas=ampu.id_kelas where ampu.id_ampu='$_GET[id_ampu]'");
+                while($d = mysqli_fetch_array($data)){
+            ?>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="callout callout-info">
+                    <h4><b>Informasi :</b></h4>
+                    <table >
+                        <tr>
+                            <td > Mata Pelajaran</td>
+                            <td style="padding-right:30px;">: <b><?php echo $d['nm_mapel']; ?></b> </td>
+                            <td>Jumlah Siswa</td>
+                            <td> : <b> <?php echo mysqli_num_rows(mysqli_query($koneksi,"select * from siswa where id_kelas='$d[id_kelas]'")); ?></b></td>
+                        </tr>
+                        <tr>
+                            <td>Guru Pengajar</td>
+                            <td>: <b><?php echo $d['nm_guru']; ?></b> </td>
+                            <td>Jumlah Materi Upload</td>
+                            <td> : <b> <?php echo mysqli_num_rows(mysqli_query($koneksi,"select * from materi where id_ampu='$d[id_ampu]'")); ?></b></td>
+                        </tr>
+                        <tr>
+                            <td>Kelas</td>
+                            <td>: <b><?php echo $d['nm_kelas']; ?></b></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                <div style="padding-bottom:15px;">
+                    <a href="?page=mata_pelajaran&mata_pelajaran=detail&id_ampu=<?php echo $_GET['id_ampu'];?>" class="btn btn-primary"> <i class="fa fa-chevron-left"> </i> KEMBALI</a>
+                </div>
+            </div>
             <!-- list tugas -->
             <div class="col-md-8 col-md-offset-2 ">
                 <div class="box box-default">
@@ -60,8 +93,8 @@
                         <div class="pull-left">
                             <div class="user-block">
                                 <img class="img-circle" src="../assets/dist/img/user1-128x128.jpg" alt="User Image">
-                                <span class="username"><a href="#">Upload Materi Guru  </a></span>
-                                <span class="description">( helper portal guru )</span>
+                                <span class="username"><a href="#">Tambah Materi </a></span>
+                                <span class="description">Form tambah materi</span>
                             </div>
                         </div>
                         <div class="pull-right">
@@ -71,28 +104,8 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <form method="post" action="http://localhost/elearning/admin/?system=materi&aksi=upload_materi" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Kelas</label>
-                                <select class="form-control select2" name="kelas" id="kelas" style="width: 100%;" required>
-                                    <option>-- pilih --</option>
-                                    <?php
-                                    $no=1;
-                                        $kelas=mysqli_query($koneksi,"select * from kelas");
-                                        while($w = mysqli_fetch_array($kelas)){
-                                    ?>
-                                    <option value="<?php echo $w['id_kelas'];?>"><?php echo $w['nm_kelas'];?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Pengampu Mapel</label>
-                                <select class="form-control select2" name="pengampu" id="pengampu" style="width: 100%;" required>
-                                    
-                                    <option>-- pilih --</option>
-                                    
-                                </select>
-                            </div>
+                        <form method="post" action="http://localhost/elearning/guru/?system=materi&aksi=upload_materi" enctype="multipart/form-data">
+                            <input type="hidden" name="pengampu" value="<?php echo $_GET['id_ampu'];?>">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Judul Materi</label>
                                 <input type="text" class="form-control" name="judul" placeholder="Masukkan Judul Materi" required>
@@ -140,6 +153,7 @@
                 <!-- /.box -->
                 <!-- /.box -->
             </div>
+            <?php } ?>
         </div>
     </section>
     <!-- /.content -->
